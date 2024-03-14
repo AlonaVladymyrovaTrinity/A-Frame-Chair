@@ -67,14 +67,15 @@ const App = () => {
         {/*Chair */}
         <a-entity
           gltf-model={chair}
-          scale="0.02 0.02 0.02"
+          // scale="0.02 0.02 0.02"
+          scale="1 1 1"
           position="0 0.1 -1"
           rotation="0 -35 0"
           ref={objectRef}
         ></a-entity>
         {/* Camera */}
         <a-entity camera></a-entity> {/* Camera entity for stabilization */}
-        <a-camera position="0 0.5 2" look-controls-enabled="false"></a-camera>
+        <a-camera position="0 0.5 10" look-controls-enabled="false"></a-camera>
       </a-scene>
     </div>
   );
