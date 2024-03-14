@@ -63,7 +63,6 @@ const App = () => {
           color="#CCCCCC"
           material={`shader: flat; src: ${carpet}; repeat: 10 10`}
         ></a-plane>
-
         {/* Draggable object */}
         {/*Chair */}
         <a-entity
@@ -73,8 +72,8 @@ const App = () => {
           rotation="0 -35 0"
           ref={objectRef}
         ></a-entity>
-
         {/* Camera */}
+        <a-entity camera></a-entity> {/* Camera entity for stabilization */}
         <a-camera position="0 0.5 2" look-controls-enabled="false"></a-camera>
       </a-scene>
     </div>
