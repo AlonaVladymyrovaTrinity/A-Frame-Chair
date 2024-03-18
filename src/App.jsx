@@ -1,6 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import 'aframe';
-import 'ar.js';
 import carpet from './assets/carpet.png';
 import chair from './assets/club_chair.glb';
 
@@ -53,8 +51,9 @@ const App = () => {
 
   return (
     <div>
-      <a-scene>
-        {/* Grid floor */}
+      {/*"debugUIEnabled: false;" to remove the alerts 'trackingBackend' and 'markersAreaEnabled' with AR.js
+        Grid floor */}
+      <a-scene arjs="debugUIEnabled: false;">
         <a-plane
           position="0 0 0"
           rotation="-90 0 0"
