@@ -1,31 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import 'aframe';
-import 'ar.js';
 import carpet from './assets/carpet.png';
 import chair from './assets/club_chair.glb';
-import { AFrameScene } from './lib/aframe-components.js';
-
-const chairSceneHTML = `
-<a-scene>
-  <a-plane
-    position="0 0 0"
-    rotation="-90 0 0"
-    width="10"
-    height="10"
-    color="#CCCCCC"
-    material="shader: flat; src: ${carpet}; repeat: 10 10"
-  ></a-plane>
-  <a-entity
-    gltf-model="${chair}"
-    scale="0.02 0.02 0.02"
-    position="0 0.1 -1"
-    rotation="0 -35 0"
-    ref="{objectRef}"
-  ></a-entity>
-  <a-entity camera></a-entity>
-  <a-camera position="0 0.5 1" look-controls-enabled="false"></a-camera>
-</a-scene>
-`;
 
 const App = () => {
   const objectRef = useRef(null); // Reference for the draggable object
@@ -75,11 +50,32 @@ const App = () => {
   }, []);
 
   return (
-    <React.Fragment>
-      <div>
-        <AFrameScene sceneHtml={chairSceneHTML} />
-      </div>
-    </React.Fragment>
+    <div>
+      {/*"debugUIEnabled: false;" to remove the alerts 'trackingBackend' and 'markersAreaEnabled' with AR.js
+        Grid floor */}
+      <a-scene arjs="debugUIEnabled: false;">
+        <a-plane
+          position="0 0 0"
+          rotation="-90 0 0"
+          width="10"
+          height="10"
+          color="#CCCCCC"
+          material={`shader: flat; src: ${carpet}; repeat: 10 10`}
+        ></a-plane>
+        {/* Draggable object */}
+        {/*Chair */}
+        <a-entity
+          gltf-model={chair}
+          scale="0.02 0.02 0.02"
+          position="0 0.1 -1"
+          rotation="0 -35 0"
+          ref={objectRef}
+        ></a-entity>
+        {/* Camera */}
+        <a-entity camera></a-entity> {/* Camera entity for stabilization */}
+        <a-camera position="0 0.5 2" look-controls-enabled="false"></a-camera>
+      </a-scene>
+    </div>
   );
 };
 
